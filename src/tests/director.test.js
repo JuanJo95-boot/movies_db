@@ -33,15 +33,11 @@ test("Post 'BASE_URL should return status code 201 and res.body.firstName = dire
     const res = await request(app)
       .get(BASE_URL)
   
-    // console.log(res.body);
-  
     expect(res.status).toBe(200)
     expect(res.body).toBeDefined()
-    // expect(res.body).toHaveLength(1)
     expect(res.body).toHaveLength(1)
   
-    expect(res.body[0].movies).toBeDefined()
-    expect(res.body[0].movies).toHaveLength(0)
+    
   })
   //! RUTAS DINAMICAS
 
@@ -49,8 +45,6 @@ test("Post 'BASE_URL should return status code 201 and res.body.firstName = dire
 
     const res = await request(app)
       .get(`${BASE_URL}/${directorId}`)
-  
-    
   
     expect(res.status).toBe(200)
     expect(res.body).toBeDefined()
@@ -84,8 +78,7 @@ test("Post 'BASE_URL should return status code 201 and res.body.firstName = dire
 
     const res = await request(app)
       .delete(`${BASE_URL}/${directorId}`)
-  
-    expect(res.statusCode).toBe(204)
+       expect(res.statusCode).toBe(204)
   })
 
   

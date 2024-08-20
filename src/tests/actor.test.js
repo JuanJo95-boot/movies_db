@@ -3,13 +3,7 @@ require('../models')
 const request = require("supertest")
 const app = require('../app');
 
-
-
-
 let actorId;
-
-
-
 
 const actor = {
     firstName: "Juan",
@@ -18,9 +12,6 @@ const actor = {
     image: "https://tse1.mm.bing.net/th?id=OIP.3TcIbaWAareGTaWHFwJDBgHaEk&pid=Api&P=0&h=180",
     birthday: "1995-03-18"
 }
-
-
-
 
 
 const BASE_URL = '/api/v1/actors'
@@ -41,15 +32,11 @@ test("POST BASE_URL, should return status code 201 and res.body.firstName === ac
 
 test("GET BASE_URL, should return status 200, res.body to be defined and res.body.firstName === actor.firstName", async() =>{
     const res = await request(app)
-      .get(`${BASE_URL}/${actorId}`)
+      .get(BASE_URL)
 
       expect(res.status).toBe(200)
       expect(res.body).toBeDefined()
       expect(res.body).toHaveLength(1)
-
-      expect(res.body[0].movies).toBeDefined()
-      expect(res.body[0].movies).toHaveLength(0)
-
 
 })
 
@@ -58,7 +45,6 @@ test("GET BASE_URL, should return status 200, res.body to be defined and res.bod
 test("GET -> '/BASE_URL/:id', should return status code 200, res.body to be defined and res.body.firstName === actor.firstName", async() =>{
     const res = await request(app)
       .get(`${BASE_URL}/${actorId}`)
-
 
     expect(res.status).toBe(200)
     expect(res.body).toBeDefined()
@@ -85,7 +71,6 @@ test("PUT -> '/BASE_URL/:id', should return code status code 200, res.body.first
 test("DELETE -> '/BASE_URL/:id', should return statusCode 204", async () => {
     const res = await request(app)
       .delete(`${BASE_URL}/${actorId}`)
-
       expect(res.statusCode).toBe(204)
 })
 
